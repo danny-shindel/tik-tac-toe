@@ -13,15 +13,34 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    font-family: 'Open Sans', sans-serif;
+    background-color: lightyellow;
 }
 
 header {
     font-size: 8vmin;
     letter-spacing: .5vmin;
-    color: grey;
-    font-family: 'Open Sans', sans-serif;
+    color: darkgray;
     font-weight: bold;
+    opacity: .3;
 }
+
+#msg {
+    font-size: 4vmin;
+    letter-spacing: .5vmin;
+    color: grey;
+}
+
+section > div {
+    text-align: center;
+    vertical-align: middle;
+    line-height: 20vmin;
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+}
+
+
 
 /* play board */
 
@@ -35,12 +54,11 @@ header {
 
 section > div > button {
     border: .5vmin solid lightblue;
-    background-color: white;
+    background-color:lightyellow;
     height: 5vmin;
     width: 5vmin;
     border-radius: 50%;
     margin: 7vmin;
-    opacity: .6;
 }
 
 section > div > button:hover {
@@ -53,29 +71,29 @@ section > div > button:hover {
 /* grid lines */
 
 #b0, #b3, #b6 {
-    border-right: 1vmin solid grey
+    border-right: 1vmin solid rgba(128,128,128,.5);
 }
 
 #b1, #b4, #b7 {
-    border-left: 1vmin solid grey;
-    border-right: 1vmin solid grey;
+    border-left: 1vmin solid rgba(128,128,128,.5);
+    border-right: 1vmin solid rgba(128,128,128,.5);
 }
 
 #b2, #b5, #b8 {
-    border-left: 1vmin solid grey;
+    border-left: 1vmin solid rgba(128,128,128,.5);
 }
 
 #b3, #b4, #b5 {
-    border-top: 1vmin solid grey;
-    border-bottom: 1vmin solid grey;
+    border-top: 1vmin solid rgba(128,128,128,.5);
+    border-bottom: 1vmin solid rgba(128,128,128,.5);
 }
 
 #b0, #b1, #b2 {
-    border-bottom: 1vmin solid grey;
+    border-bottom: 1vmin solid rgba(128,128,128,.5);
 }
 
 #b6, #b7, #b8 {
-    border-top: 1vmin solid grey;
+    border-top: 1vmin solid rgba(128,128,128,.5);
 }
 
 /* play again button */
