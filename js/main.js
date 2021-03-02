@@ -10,10 +10,7 @@ let board, turn, winner;
 
 /*----- cached element references -----*/
 const msgEl = document.getElementById('msg');
-// const boardEl = [...document.querySelectorAll('#board > div')];
 const replayBtn = document.getElementById('pa');
-const circle = document.getElementById('b');
-
 
 /*----- event listeners -----*/
 document.querySelector('board > div > button')
@@ -26,13 +23,13 @@ init();
 function handleMove(evt){
     const idx = parseInt(evt.target.parentElement.id.replace("b", ""));
     if (winner) return;
+    if (isNaN(idx)) return;
     if (board[idx] === 1 || board[idx] === -1) return;
     board[idx] = turn;
     turn *= -1;
     winner = getWinner();
     render();
 }
-
 
 function getWinner(){
     let winner = null
@@ -53,11 +50,7 @@ function getWinner(){
     } if (Math.abs(board[2] + board[4] + board[6]) === 3){
         return turn *= -1
     }else if (!board.includes(0)) return winner = 'T';
-    // } else {
-    //     return
-    // }
 }
-
 
 function init() {
     board = [0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -71,22 +64,24 @@ function render() {
         const div = document.getElementById(`b${spaceIdx}`)
         div.innerHTML = moveLookup[spaceVal];
         if (spaceVal === 1){
-            div.setAttribute("style", "color:lightblue; font-size:8vmin");
+            div.setAttribute("style", "color:#d6a3ff; font-size:8vmin");
         } else if (spaceVal === -1) {
-            div.setAttribute("style", "color:lightseagreen; font-size:8vmin");   
+            div.setAttribute("style", "color:#96c5ff; font-size:8vmin");   
         }
+    });
+    document.querySelectorAll('#board > div > button').forEach(function(button){
+        button.classList.remove(...button.classList);
+        button.classList.add(turn > 0 ? "p1T" : "p2T");
     });
     if (winner === 'T') {
         msgEl.textContent = "It's a Tie!!!";
     } else if (winner) {
+        document.querySelectorAll('#board > div > button').forEach(function(button){
+            button.classList.remove(...button.classList);
+        })
         msgEl.innerHTML = `${moveLookup[winner]} Wins!`;
     } else {
         msgEl.innerHTML = `${moveLookup[turn]}'s Turn`;
     }
     replayBtn.style.visibility = winner ? 'visible' : 'hidden';
-    if (turn === 1){
-        circle.setAttribute("style", "background-color:black");
-    } else {
-        circle.style.backgroundColor = "black";
-    }
-}       
+}
